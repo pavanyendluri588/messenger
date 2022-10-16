@@ -7,7 +7,10 @@ status=None
 users=["root"]
 username="root"
 server.listen(3)
-c1,address1 = server.accept()
+#c1,address1 = server.accept()
+while True:
+    c1, address1 = server.accept()
+    print("connection accepted",address1)
 print("client1 is connected")
 users.append(c1.recv(1024).decode())
 c1.send(bytes("hi client1","utf-8"))

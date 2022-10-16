@@ -1,12 +1,18 @@
 import socket
 
 def connect(ip_address,host):
-    client = socket.socket()
-    client.connect((ip_address,host))
-    print(client.connect_ex((ip_address,host)))
-    if client.connect_ex((ip_address,host)) != 0:
-        print("socket is connected")
-connect(socket.gethostbyname(socket.gethostname()),9999)
+    try:
+        client = socket.socket()
+        client.connect((ip_address,host))
+        print(client.connect_ex((ip_address,host)))
+        if client.connect_ex((ip_address,host)) != 0:
+            print("socket is connected")
+        return 'connected'
+    except Exception as e:
+        print("connection id failed:",e)
+        return "failed"
+
+#connect(socket.gethostbyname(socket.gethostname()),9999)
 """
 client = socket.socket()
 client.connect((socket.gethostbyname(socket.gethostname()),9999))
