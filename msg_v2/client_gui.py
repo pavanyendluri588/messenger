@@ -45,15 +45,16 @@ class main_window():
 
        self.connnected_frame=tk.Frame(self.root1,width=self.screem_width,height=self.screem_height,bg='green')
        #self.connnected_frame.place(x=0,y=0)
+       self.connnected_frame_text_indiaplay_box=""
        self.connnected_frame_conneected_label= tk.Label(self.connnected_frame,text='connected to server',font=("Comic Sans MS", 20, "bold"))
        self.connnected_frame_conneected_label.place(x=130,y=0)
        self.connnected_frame_back_button=tk.Button(self.connnected_frame,text="<back",command=self.back_fun,font=("TkDefaultFont", 10, "bold"))
        self.connnected_frame_back_button.place(x=480,y=0)
-       self.connnected_frame_text_displlay_label= tk.Text(self.connnected_frame,width=65,height=31)
-       self.connnected_frame_text_displlay_label.place(x=5,y=50)
+       self.connnected_frame_text_displlay_label= tk.Text(self.connnected_frame,width=57,height=26,bg='grey',fg='white',font=("TkDefaultFont", 13, "bold"))
+       self.connnected_frame_text_displlay_label.place(x=7,y=50)
        self.connnected_frame_massage_input_var=tk.StringVar()
        self.connnected_frame_massage_input_entry=tk.Entry(self.connnected_frame,textvariable=self.connnected_frame_massage_input_var,font=("TkDefaultFont", 15, "bold"))
-       self.connnected_frame_massage_input_entry.config(width=40,bg='grey',fg='white')
+       self.connnected_frame_massage_input_entry.config(width=40,fg='red')
        self.connnected_frame_massage_input_entry.place(x=10,y=555,height=38)
        self.connnected_frame_send_button=tk.Button(self.connnected_frame,text="send",font=("TkDefaultFont", 15, "bold"),command=self.connnected_frame_send_fun)
        self.connnected_frame_send_button.place(x=465,y=555)
@@ -96,9 +97,12 @@ class main_window():
         self.connection_frame.pack()
         print("back function is ended")
     def connnected_frame_send_fun(self):
+        self.connnected_frame_text_displlay_label.delete("1.0","end")
         self.send_data="["+self.connection_frame_name_var.get()+"]>"+self.connnected_frame_massage_input_var.get()+"\n"
         print("self.send_data",self.send_data)
-        self.connnected_frame_text_displlay_label.insert(tk.END,"\n"+self.send_data)
+        self.connnected_frame_text_indiaplay_box = self.connnected_frame_text_indiaplay_box + self.send_data
+        print("self.connnected_frame_text_indiaplay_box:",self.connnected_frame_text_indiaplay_box)
+        self.connnected_frame_text_displlay_label.insert(tk.END,"\n"+self.connnected_frame_text_indiaplay_box)
         self.connnected_frame_massage_input_var.set("")
     def failed_frame_back_fun(self):
         print("back function is called")

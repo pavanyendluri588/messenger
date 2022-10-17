@@ -1,7 +1,8 @@
 import socket
 
 client = socket.socket()
-client.connect((socket.gethostbyname(socket.gethostname()),9999))
+client.connect(('172.17.0.4',5000))
+#socket.gethostbyname(socket.gethostname()
 print("connected\n")
 name1=str(input("Enter your name:"))
 client.send(bytes(name1,'utf-8'))
